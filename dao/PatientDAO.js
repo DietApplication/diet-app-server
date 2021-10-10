@@ -58,9 +58,17 @@ module.exports = {
         );
         //INSERT INTO QUESTIONARY
         //TO-DO
-        const promise2 = db.runQuery(`INSERT INTO public.questionary(
-          idpatient, databadania, education, profession, mainproblems, hypertension, insulinresistance, diabetes, hypothyroidism, intestinaldiseases, otherdiseases, medications, supplementstaken, avgsleep, usuallywakeup, usuallygotosleep, doesexercise, regularwalk, averagesporttime, sporttypes, exercisingperweek, waterglasses, coffeeglasses, teaglasses, juiceglasses, energydrinkglasses, drinkalchohol, alcoholhowoften, alchoholbeverages, smoke, cigs, mealseat, breakfast, secondbreakfast, lunch, afternoonmeal, dinner, favfooditems, notfavfooditems, foodhypersensitivity, hypersensitivityproducts, alergie, alergieproducts, gobetweenmeals, betweenmealsfood)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        const promise2 = db.runQuery(
+          `INSERT INTO public.questionary(
+          idpatient, databadania, education, profession, mainproblems, hypertension, insulinresistance, diabetes, hypothyroidism, intestinaldiseases, otherdiseases, 
+          medications, supplementstaken, avgsleep, usuallywakeup, usuallygotosleep, doesexercise, regularwalk, averagesporttime, sporttypes, exercisingperweek, 
+          waterglasses, coffeeglasses, teaglasses, juiceglasses, energydrinkglasses, drinkalchohol, alcoholhowoften, alchoholbeverages, smoke, cigs, mealseat,
+          breakfast, secondbreakfast, lunch, afternoonmeal, dinner, favfooditems, notfavfooditems, foodhypersensitivity, hypersensitivityproducts, alergie, alergieproducts, 
+          gobetweenmeals, betweenmealsfood)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, 
+          $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, 
+          $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, 
+          $42, $43, $44, $45);`,
           [
             userId,
             surveyHelper.getCurrentDate(),
@@ -74,9 +82,41 @@ module.exports = {
             request.instestinaldiseases,
             request.otherdiseases,
             request.medications,
+            request.supplementstaken,
             request.avgsleep,
-            request,
-          ]);
+            request.usuallywakeup,
+            request.usuallytogosleep,
+            request.doesexercise,
+            request.regularwalk,
+            request.averagesporttime,
+            request.sporttypes,
+            request.exercisingperweek,
+            request.waterglasses,
+            request.coffeeglasses,
+            request.teaglasses,
+            request.juiceglasses,
+            request.energydrinkglasses,
+            request.drinkalchohol,
+            request.alcholhowoften,
+            request.alchoholbeverages,
+            request.smoke,
+            request.cigs,
+            request.mealseat,
+            request.breakfast,
+            request.secondbreakfast,
+            request.lunch,
+            request.afternoonmeal,
+            request.dinner,
+            request.favfooditems,
+            request.notfavfooditems,
+            request.foodhypersensitivity,
+            request.hypersensitivityproducts,
+            request.alergie,
+            request.alergieproducts,
+            request.gobetweenmeals,
+            request.betweenmealsfood,
+          ]
+        );
       })
       .catch((err) => {
         console.log(err);
