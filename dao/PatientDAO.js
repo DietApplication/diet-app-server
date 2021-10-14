@@ -1,9 +1,8 @@
 const db = require("../util/database");
 const { firebase, admin } = require("../auth/firebaseConfig");
-const surveyHelper = require("../Helpers/SurveyHelper");
+const surveyHelper = require("../helpers/SurveyHelper");
 
-module.exports = {
-  createUser: (request) => {
+  exports.createUser = (request) => {
     let userId;
 
     surveyHelper
@@ -57,7 +56,6 @@ module.exports = {
           ]
         );
         //INSERT INTO QUESTIONARY
-        //TO-DO
         const promise2 = db.runQuery(
           `INSERT INTO public.questionary(
           idpatient, databadania, education, profession, mainproblems, hypertension, insulinresistance, diabetes, hypothyroidism, intestinaldiseases, otherdiseases, 
@@ -121,5 +119,4 @@ module.exports = {
       .catch((err) => {
         console.log(err);
       });
-  },
-};
+  };

@@ -1,21 +1,23 @@
 const db = require("../util/database");
 
-/*
-{
-    "email": ...,
-    "uniquekey": ....
-}
-*/
+
 exports.validateEmail = (req, res, next) => {
+  console.log(req.body);
   db.runQuery(
-    `SELECT * FROM public."Temp WHERE email = $1 and uniquekey = $2`,
+    `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
     [req.body.email, req.body.uniquekey]
   ).then((data) => {
-    if (data) {
-      res.status(200);
+    if (data[0]) {
+      res.status(200).json({
+        message: "User verified succesfully"
+      });
     } else {
-      res.status(403); 
+      res.status(403).json({
+        message: "No user was found"
+      });
     }
+  }).catch(err => {
+    next(err);
   });
 };
 /*

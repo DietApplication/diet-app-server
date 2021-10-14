@@ -9,8 +9,6 @@ module.exports = {
         else throw "User exists";
       });
   },
-  // TO-DO
-  validateRequest: (request) => {},
   //Date.now format => dd-mm-yyyy
   getCurrentDate: () => {
     new Date().toLocaleDateString().replaceAll("/", "-"); 
