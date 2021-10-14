@@ -2,7 +2,6 @@ const db = require("../util/database");
 
 
 exports.validateEmail = (req, res, next) => {
-  console.log(req.body);
   db.runQuery(
     `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
     [req.body.email, req.body.uniquekey]
@@ -17,7 +16,7 @@ exports.validateEmail = (req, res, next) => {
       });
     }
   }).catch(err => {
-    next(err);
+    next(error);
   });
 };
 /*
