@@ -1,5 +1,5 @@
 const express = require('express');
-const surveyRoutes = require("./routes/survey");
+const surveyRoutes = require("./api/routes/survey");
 const morgan = require('morgan');
 const {swaggerOptions} = require('./config/config');
 const swaggerUI = require("swagger-ui-express");

@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "diet-application-d844c",
   storageBucket: "diet-application-d844c.appspot.com",
   messagingSenderId: "1093958582572",
-  appId: "1:1093958582572:web:ac9f89b4939e6aad4eec89"
+  appId: "1:1093958582572:web:ac9f89b4939e6aad4eec89",
 };
 
 // Initialize Firebase

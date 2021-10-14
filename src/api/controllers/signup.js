@@ -1,23 +1,24 @@
-const db = require("../util/database");
-
+const db = require("../../util/database");
 
 exports.validateEmail = (req, res, next) => {
   db.runQuery(
     `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
     [req.body.email, req.body.uniquekey]
-  ).then((data) => {
-    if (data[0]) {
-      res.status(200).json({
-        message: "User verified succesfully"
-      });
-    } else {
-      res.status(403).json({
-        message: "No user was found"
-      });
-    }
-  }).catch(err => {
-    next(error);
-  });
+  )
+    .then((data) => {
+      if (data[0]) {
+        res.status(200).json({
+          message: "User verified succesfully",
+        });
+      } else {
+        res.status(403).json({
+          message: "No user was found",
+        });
+      }
+    })
+    .catch((err) => {
+      next(error);
+    });
 };
 /*
 {
@@ -78,6 +79,4 @@ exports.validateEmail = (req, res, next) => {
     "mealsbeforediet": [{mealnumber,hour,foodtoeat}]
 }
 */
-exports.createUser = (req,res,next) => {
-    
-}
+exports.createUser = (req, res, next) => {};

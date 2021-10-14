@@ -9,15 +9,15 @@ module.exports = {
   swaggerOptions: {
     swaggerDefinition: {
       info: {
-        title: 'Diet application API',
-        descriotion: 'API for Diet Application Thesis in PJAIT',
+        title: "Diet application API",
+        descriotion: "API for Diet Application Thesis in PJAIT",
         contact: {
           name: "Dmytro Borovych",
-          studentNumber: "s18963"
+          studentNumber: "s18963",
         },
-        servers: ['http://localhost:5000']
-      }
+        servers: ["http://localhost:5000"],
+      },
     },
-    apis: ['../routes/*.js']
-  }
+    apis: ["./routes/*.js"],
+  },
 };

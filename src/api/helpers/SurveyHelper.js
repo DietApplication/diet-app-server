@@ -1,4 +1,4 @@
-const db = require("../util/database");
+const db = require("../../../util/database");
 
 module.exports = {
   checkEmail: (email) => {
@@ -11,6 +11,6 @@ module.exports = {
   },
   //Date.now format => dd-mm-yyyy
   getCurrentDate: () => {
-    new Date().toLocaleDateString().replaceAll("/", "-"); 
+    new Date().toLocaleDateString().replaceAll("/", "-");
   },
 };
