@@ -1,20 +1,14 @@
-const express = require('express');
-const surveyRoutes = require("./api/routes/survey");
-const morgan = require('morgan');
-const {swaggerOptions} = require('./config/config');
-const swaggerUI = require("swagger-ui-express");
-const swaggerJSDoc = require('swagger-jsdoc');
+import express from 'express'
+import surveyRoutes from './api/routes/survey.js'
+import morgan from 'morgan'
 
 const PORT = 5000;
 const app = express();
-const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());
 app.use(morgan('dev'));
 
-//Swagger
-app.use('/api-docs',swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 //Routes
 app.use("/survey",surveyRoutes);
 

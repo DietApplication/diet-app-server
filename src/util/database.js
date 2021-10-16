@@ -1,12 +1,17 @@
-const Pool = require("pg").Pool;
-const config = require("../config/config");
+import pkg from 'pg'
+import config from '../config/config.js'
 
+const {Pool} = pkg;
 const pool = new Pool(config.elephantDb);
 
-pool.on("connect", () => {
-  console.log("Connecting...");
-});
-
+/**
+ * Runs a query in Postgres database
+ *
+ * User account creation can fail if the account already exists or the password is invalid.
+ * @param text - Query itself with parameters format $ + number of parameter (e.g $1, $2 etc)
+ * @param values - Array of values in a query
+ * @returns - Returns a promise with rows of data
+ */
 const runQuery = (text, values) => {
   return pool
     .query(text, values)
@@ -18,4 +23,4 @@ const runQuery = (text, values) => {
     });
 };
 
-exports.runQuery = runQuery;
+export default runQuery;

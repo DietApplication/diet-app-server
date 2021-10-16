@@ -1,4 +1,9 @@
-module.exports = (schema) => async (req, res, next) => {
+/**
+ * Middleware that validates coming request and matches it to provided schema
+ * @param schema schema of request
+ * @returns Sends a response with status 404 and error in case of failure 
+ */
+export default (schema) => async (req, res, next) => {
   const body = req.body;
   console.log(body);
   try {

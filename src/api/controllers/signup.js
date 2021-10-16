@@ -1,23 +1,28 @@
-const db = require("../../util/database");
+import runQuery from '../../util/database.js';
 
-exports.validateEmail = (req, res, next) => {
-  db.runQuery(
+/**
+ * Validates user email before accessing the survey
+ * @returns Response with Code 200 in case user was found in database
+ * @returns Response with Code 403 in case request user was not found
+ */
+export const validateEmail = (req, res, next) => {
+  runQuery(
     `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
     [req.body.email, req.body.uniquekey]
   )
     .then((data) => {
       if (data[0]) {
-        res.status(200).json({
+        return res.status(200).json({
           message: "User verified succesfully",
         });
       } else {
-        res.status(403).json({
+        return res.status(403).json({
           message: "No user was found",
         });
       }
     })
     .catch((err) => {
-      next(error);
+      next(err);
     });
 };
 /*
@@ -79,4 +84,4 @@ exports.validateEmail = (req, res, next) => {
     "mealsbeforediet": [{mealnumber,hour,foodtoeat}]
 }
 */
-exports.createUser = (req, res, next) => {};
+export const createUser = (req, res, next) => {};

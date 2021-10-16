@@ -1,22 +1,29 @@
-const db = require("../../util/database");
-const { firebase, admin } = require("../../auth/firebaseConfig");
-const surveyHelper = require("../helpers/SurveyHelper");
+import runQuery from "../../util/database.js";
+import app from "../../auth/firebaseConfig.js";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import surveyHelper from "../helpers/SurveyHelper.js";
 
-exports.createUserFromSurvey = (request) => {
+/**
+ * Creates user from survey and set it to pending list
+ */
+export const createUserFromSurvey = (request) => {
   let userId;
+  const auth = getAuth(app);
 
   surveyHelper
     .checkEmail(request.email)
     .then(() => {
-      return firebase
-        .auth()
-        .createUserWithEmailAndPassword(request.email, request.password);
+      return createUserWithEmailAndPassword(
+        auth,
+        request.email,
+        request.password
+      );
     })
     .then(() => {
-      //INSERT USER
-      return db.runQuery(
-        `insert into public."Users"(firstname,lastname, dateofbirth,email,phonenumber,role) values ($1,$2,TO_DATE($3,'DD-MM-YYYY'),$4,$5,$6) RETURNING iduser`,
+      return runQuery(
+        `insert into public."Users"(email,firstname,lastname, dateofbirth,email,phonenumber,role) values ($1,$2,$3,TO_DATE($4,'DD-MM-YYYY'),$5,$6,$7) RETURNING iduser`,
         [
+          request.email,
           request.firstname,
           request.lastname,
           request.dateofbirth,

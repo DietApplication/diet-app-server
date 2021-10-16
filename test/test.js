@@ -1,4 +1,4 @@
-const db = require("../util/database");
+// const db = require("../src/util/database");
 
 /* const request = {
   gender: "MALE",

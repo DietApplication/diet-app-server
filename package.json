@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "REST API for diploma diet application",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "test": "npm test.js",
+    "start": "nodemon app.js"
   },
   "author": "d.borovych",
   "license": "ISC",
@@ -15,8 +16,6 @@
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.1.6",
     "yup": "^0.32.11"
   },
   "devDependencies": {

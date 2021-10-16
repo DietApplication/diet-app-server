@@ -1,9 +1,11 @@
-const yup = require("yup");
+import yup from 'yup';
 
-module.exports = {
+export default {
   checkEmailSchema: yup.object({
     email: yup.string().email().required(),
     uniquekey: yup.string().required(),
   }),
-  surveySignUpSchema: yup.object({})
+  surveySignUpSchema: yup.object({
+    
+  })
 };

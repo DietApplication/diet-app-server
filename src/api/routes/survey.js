@@ -1,20 +1,11 @@
-const express = require("express");
-const signUpController = require("../controllers/signup");
+import express from "express";
+import { validateEmail, createUser } from "../controllers/signup.js";
+import validator from "../middlewares/validator.js";
+import schemas from "../../validations/surveySchemas.js";
+
 const router = express.Router();
-const validator = require("../middlewares/validator");
-const schemas = require("../../validations/surveySchemas");
 
-/**
- * @swagger
- * /survey/checkemail:
- *  get:
- *      description: get customers
- */
-router.get(
-  "/checkemail",
-  validator(schemas.checkEmailSchema),
-  signUpController.validateEmail
-);
-router.post("/signup", signUpController.createUser);
+router.get("/checkemail", validator(schemas.checkEmailSchema), validateEmail);
+router.post("/signup", createUser);
 
-module.exports = router;
+export default router;
