@@ -1,15 +1,15 @@
-import runQuery from '../../util/database.js';
+import {
+  checkTempUserEmail,
+  createUserFromSurvey,
+} from "../services/signUpService.js";
 
 /**
- * Validates user email before accessing the survey
+ * Validates user email and uniquekey before accessing the survey
  * @returns Response with Code 200 in case user was found in database
  * @returns Response with Code 403 in case request user was not found
  */
 export const validateEmail = (req, res, next) => {
-  runQuery(
-    `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
-    [req.body.email, req.body.uniquekey]
-  )
+  checkTempUserEmail(req)
     .then((data) => {
       if (data[0]) {
         return res.status(200).json({

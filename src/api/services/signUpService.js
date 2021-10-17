@@ -127,3 +127,16 @@ export const createUserFromSurvey = (request) => {
       console.log(err);
     });
 };
+
+
+/**
+ * Checks temp user credentials in dabatase
+ * @param request body
+ * @returns Promise
+ */
+export const checkTempUserEmail = (request) => {
+  return runQuery(
+    `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
+    [req.body.email, req.body.uniquekey]
+  );
+}
