@@ -11,7 +11,7 @@ export const createUserFromSurvey = (request) => {
   let userId;
   const auth = getAuth(app);
 
-  surveyHelper
+  return surveyHelper
     .checkEmail(request.email)
     .then(() => {
       return createUserWithEmailAndPassword(
@@ -36,7 +36,7 @@ export const createUserFromSurvey = (request) => {
     .then((result) => {
       userId = result[0].userid;
       //INSERT INTO PATIENT
-      return db.runQuery(
+      return runQuery(
         `insert into public."Patient"(ispending, sex, city, street, streetnumber, flatnumber, PAL) values ($1, $2, $3, $4, $5, $6, $7, $8)`,
         [
           userId,
@@ -52,7 +52,7 @@ export const createUserFromSurvey = (request) => {
     })
     .then(() => {
       //INSERT INTO MEASUREMENTS
-      const promise1 = db.runQuery(
+      const promise1 = runQuery(
         `insert into public."measurements"(idpatient,height,weight,date,hipcircumference,waistcircumference) values ($1, $2, $3, TO_DATE($4,'DD-MM-YYYY), $5, $6)`,
         [
           userId,
@@ -64,7 +64,7 @@ export const createUserFromSurvey = (request) => {
         ]
       );
       //INSERT INTO QUESTIONARY
-      const promise2 = db.runQuery(
+      const promise2 = runQuery(
         `INSERT INTO public.questionary(
           idpatient, databadania, education, profession, mainproblems, hypertension, insulinresistance, diabetes, hypothyroidism, intestinaldiseases, otherdiseases, 
           medications, supplementstaken, avgsleep, usuallywakeup, usuallygotosleep, doesexercise, regularwalk, averagesporttime, sporttypes, exercisingperweek, 
@@ -123,9 +123,6 @@ export const createUserFromSurvey = (request) => {
           request.betweenmealsfood,
         ]
       );
-    })
-    .catch((err) => {
-      console.log(err);
     });
 };
 
@@ -134,9 +131,10 @@ export const createUserFromSurvey = (request) => {
  * @param request body
  * @returns Promise
  */
-export const checkTempUserEmail = (req) => {
-  return runQuery(
+export const checkTempUserEmail = async (req) => {
+  const data = await runQuery(
     `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
     [req.body.email, req.body.uniquekey]
   );
+  return data;
 };

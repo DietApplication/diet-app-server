@@ -13,10 +13,9 @@ const pool = new Pool(config.elephantDb);
  * @returns - Returns a promise with rows of data
  */
 
-const runQuery = (text, values) => {
-  return pool.query(text, values).then((res) => {
-    return res.rows;
-  });
+const runQuery = async (text, values) => {
+  const res = await pool.query(text, values);
+  return res.rows;
 };
 
 export default runQuery;

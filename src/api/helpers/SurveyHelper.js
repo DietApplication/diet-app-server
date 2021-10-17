@@ -12,7 +12,7 @@ export default {
       email,
     ]).then((data) => {
       if (!data[0]) return true;
-      else throw "User exists";
+      else throw new Error("User exists");
     });
   },
 
