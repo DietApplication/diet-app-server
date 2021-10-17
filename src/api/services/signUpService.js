@@ -5,6 +5,7 @@ import surveyHelper from "../helpers/SurveyHelper.js";
 
 /**
  * Creates user from survey and set it to pending list
+ * @param {*} request
  */
 export const createUserFromSurvey = (request) => {
   let userId;
@@ -128,15 +129,14 @@ export const createUserFromSurvey = (request) => {
     });
 };
 
-
 /**
  * Checks temp user credentials in dabatase
  * @param request body
  * @returns Promise
  */
-export const checkTempUserEmail = (request) => {
+export const checkTempUserEmail = (req) => {
   return runQuery(
     `SELECT * FROM public."temp_user" WHERE email = $1 and uniquekey = $2`,
     [req.body.email, req.body.uniquekey]
   );
-}
+};

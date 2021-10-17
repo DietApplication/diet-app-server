@@ -5,5 +5,5 @@ export default {
     host: "tai.db.elephantsql.com",
     port: 5432,
     database: "mdzcojxm",
-  }
+  },
 };

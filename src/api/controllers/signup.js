@@ -21,67 +21,10 @@ export const validateEmail = (req, res, next) => {
         });
       }
     })
-    .catch((err) => {
+    .catch((error) => {
+      const err = new Error(error);
       next(err);
     });
 };
-/*
-{
-    "firstname": ... ,
-    "lastname": ... ,
-    "gender": ... ,
-    "email": ... ,
-    "password": ...,
-    "phone": ... ,
-    "dataofbirh" ... ,
-    "pesel": ... ,
-    "city": ... ,
-    "street": ... ,
-    "flat": ... ,
-    "education": ... ,
-    "weight": ... ,
-    "height": ... ,
-    "waistcircumference": ... ,
-    "hipcircumfererence" ... ,
-    "mainproblems": ... ,
-    "hypertension": ... ,
-    "insulinresistance": ... ,
-    "diabetes": ... ,
-    "hypothyroidism": ... ,
-    "intestinaldiseases": ... ,
-    "otherdiseases": ... ,
-    "medications" : ... ,
-    "avgsleep": ... ,
-    "usuallywakeup": ... ,
-    "usuallygotosleep": ... ,
-    "averagesporttime": ... ,
-    "exercisingperweek": ... ,
-    "sporttypes": ... ,
-    "waterglasses": ... ,
-    "coffeeglasses": ... ,
-    "teaglasses": ... ,
-    "juiceglasses": ... ,
-    "energydrinkglasses": ... ,
-    "drinkalchohol": ... ,
-    "alchoholhowoftern": ... ,
-    "alchoholbeverages": ... ,
-    "smoke": ... ,
-    "cigs": ... ,
-    "mealseat": ... ,
-    "breakfast": ... ,
-    "secondbreakfast": ... ,
-    "lunch": ... ,
-    "afternoonmeal": ... ,
-    "dinner": ... ,
-    "favfooditems": ... ,
-    "notfavfooditems": ... ,
-    "foodhypersensitivity": ... ,
-    "hypersensitivityproducts": ... ,
-    "alergie": ... ,
-    "alergieproducts": ... ,
-    "gobetweenmeals": ... ,
-    "betweenmealsfood": ... ,
-    "mealsbeforediet": [{mealnumber,hour,foodtoeat}]
-}
-*/
+
 export const createUser = (req, res, next) => {};

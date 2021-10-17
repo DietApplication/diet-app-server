@@ -3,6 +3,9 @@ import runQuery from "../../util/database.js";
 export default {
   /**
    * Creates a new user account associated with the specified email address and password.
+   * @param {*} email
+   * @returns true
+   * @throws User exists
    */
   checkEmail: (email) => {
     return runQuery(`select email from public."Users" where email = $1`, [
